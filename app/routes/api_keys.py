@@ -31,7 +31,7 @@ async def create_api_key(
     **IMPORTANT**: The key is only returned once. Store it securely.
     """
     plain_key = generate_api_key()
-    print(plain_key)
+
     key_hash = hash_api_key(plain_key)
 
     api_key = APIKey(

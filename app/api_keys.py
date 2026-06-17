@@ -31,9 +31,9 @@ def get_user_by_api_key(
     """Resolve an API key to its owner. Returns None if header absent."""
     if not api_key:
         return None
-    print(api_key)
+
     key_hash = hash_api_key(api_key)
-    print(f"key_hash:{key_hash}")
+
     record = (
         db.query(APIKey)
         .filter(APIKey.key_hash == key_hash, APIKey.is_active == True)

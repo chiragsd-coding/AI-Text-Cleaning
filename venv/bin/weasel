@@ -1,4 +1,4 @@
-#!/home/chirag/Downloads/AI-Text-Cleaning/venv/bin/python3.11
+#!/home/chirag/Downloads/AI-Text-Cleaning/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
