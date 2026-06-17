@@ -80,7 +80,7 @@ async def login(req: UserLogin, db: Session = Depends(get_db)):
             status_code=status.HTTP_403_FORBIDDEN, detail="User account disabled"
         )
 
-    access_token = create_access_token(subject=str(user.id))
+    access_token = create_access_token(subject=str(req.email))
     return {
         "access_token": access_token,
         "token_type": "bearer",

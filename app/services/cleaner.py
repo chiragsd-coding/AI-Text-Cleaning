@@ -19,7 +19,7 @@ class TextCleaner:
     def __init__(self):
         """Initialize all cleaning tools."""
         # Load profanity filter
-        profanity.load_default_wordlist()
+        # profanity.load_default_wordlist()
 
         # Initialize Presidio for PII detection
         self.analyzer = AnalyzerEngine()

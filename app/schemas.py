@@ -2,6 +2,8 @@
 Pydantic schemas for request/response validation.
 """
 from typing import List, Optional, Dict, Any
+from uuid import UUID
+
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 
@@ -97,7 +99,7 @@ class APIKeyCreate(BaseModel):
 
 
 class APIKeyResponse(BaseModel):
-    id: str
+    id: UUID
     name: str
     is_active: bool
     created_at: datetime
@@ -117,7 +119,8 @@ class APIKeyFullResponse(APIKeyResponse):
 
 
 class PlanResponse(BaseModel):
-    id: str
+
+    id: UUID
     name: str
     display_name: str
     price_inr: float
@@ -131,9 +134,9 @@ class PlanResponse(BaseModel):
 
 
 class SubscriptionResponse(BaseModel):
-    id: str
-    user_id: str
-    plan_id: str
+    id: UUID
+    user_id: UUID
+    plan_id: UUID
     status: str
     current_period_start: Optional[datetime]
     current_period_end: Optional[datetime]
@@ -203,7 +206,7 @@ class UsageStatsResponse(BaseModel):
 
 
 class UsageLogResponse(BaseModel):
-    id: str
+    id: UUID
     endpoint: str
     chars_processed: int
     operations: List[str]

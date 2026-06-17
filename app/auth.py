@@ -23,6 +23,9 @@ bearer_scheme = HTTPBearer(auto_error=False)
 # ---------------------------------------------------------------------------
 
 def hash_password(password: str) -> str:
+    print("PASSWORD:", repr(password))
+    print("TYPE:", type(password))
+    print("LENGTH:", len(str(password).encode("utf-8")))
     return pwd_context.hash(password)
 
 
@@ -71,8 +74,11 @@ def get_current_user(
 ) -> User:
     if not credentials:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
+    print(credentials)
     email = decode_token(credentials.credentials)
+    print(email)
     user = db.query(User).filter(User.email == email, User.is_active == True).first()
+    print(user)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
     return user

@@ -13,6 +13,9 @@ from app.models.base import Base
 from app.routes import auth, clean, subscriptions, api_keys
 from app.config import get_settings
 
+from contextlib import asynccontextmanager
+
+
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -23,6 +26,7 @@ settings = get_settings()
 Base.metadata.create_all(bind=engine)
 
 # Initialize FastAPI app
+
 app = FastAPI(
     title="AI Text Cleaning API",
     description="Production-grade text cleaning and autocorrection service with subscription management",
@@ -59,6 +63,7 @@ app.include_router(api_keys.router)
 # ============================================================================
 # Health & Status Endpoints
 # ============================================================================
+
 
 
 @app.get("/health", tags=["health"])

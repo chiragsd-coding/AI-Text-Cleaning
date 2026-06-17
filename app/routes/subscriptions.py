@@ -19,7 +19,8 @@ router = APIRouter(prefix="/subscriptions", tags=["subscriptions"])
 async def list_plans(db: Session = Depends(get_db)):
     """List all available subscription plans."""
     plans = db.query(Plan).all()
-    return plans
+    # print([PlanResponse.model_validate(p) for p in plans])
+    return [PlanResponse.model_validate(p) for p in plans]
 
 
 @router.get("/me", response_model=SubscriptionResponse)
@@ -27,6 +28,8 @@ async def get_my_subscription(
     user: User = Depends(get_current_user), db: Session = Depends(get_db)
 ):
     """Get current user's active subscription."""
+    print(user.id)
+    print(user.is_active)
     subscription = (
         db.query(Subscription)
         .filter(
